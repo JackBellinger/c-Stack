@@ -1,5 +1,5 @@
 #ifndef STACK_H
-#DEFINE STACK_H
+#define STACK_H
 
 template <class DataType>
 struct StackNode
@@ -9,7 +9,7 @@ struct StackNode
 };
 
 template <class DataType>
-class STACK_H
+class Stack
 {
 private:
     StackNode<DataType>* top;
@@ -20,11 +20,9 @@ public:
     ~Stack();
     bool isEmpty() const;
     bool isFull() const;
-    void push(const DataType);
+    void push(DataType*);
     void pop();
     DataType topStack() const;
     void printStack();
 };
 #endif
-
-

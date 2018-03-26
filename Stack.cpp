@@ -3,21 +3,21 @@
 
 using namespace std;
 
-
-Stack::Stack(int size)
+template <class DataType>
+Stack<DataType>::Stack(int size)
 {
     maxSize = size;
 }
 
 template <class DataType>
-Stack::~Stack()
+Stack<DataType>::~Stack()
 {
     if(top == NULL)
-        cout << "Empty Stack" << endl;
+        cout << "Stack is empty" << endl;
     else
     {
         StackNode<DataType>* temp = top;
-        StackNode<DataType>* delete = temp;
+        StackNode<DataType>* deleter = temp;
         while(temp != NULL)//go until it finds null, we past the last node
         {
             deleter = temp;
@@ -29,32 +29,62 @@ Stack::~Stack()
 }
 
 template <class DataType>
-void Stack::push(const DataType newNode)
+void Stack<DataType>::push( DataType* d)
 {
-    newNode->next = top;
-    top = newNode;
+    if(!isFull())
+    {
+        StackNode<DataType>* newNode= new StackNode<DataType>();
+        newNode->data = d;
+        newNode->next = top;
+        top = newNode;
+        numNodes++;
+    }else
+        cout << "Stack is full" << endl;
 }
 
 template <class DataType>
-void Stack::pop()
+void Stack<DataType>::pop()
 {
-    StackNode<DataType>* deleter = top;
-    top = top->next;
-    delete deleter;
+    if(!isEmpty())
+    {
+        //cout << "pop" << endl;
+        StackNode<DataType>* deleter = top;
+        top = top->next;
+        delete deleter;
+        numNodes--;
+    }else
+        cout << "Stack is empty" << endl;
 }
-
-bool Stack::isEmpty()
+template <class DataType>
+bool Stack<DataType>::isEmpty() const
 {
-    return (numNodes > 0);
+    return (numNodes <= 0);
 }
-
-bool Stack::isFull()
+template <class DataType>
+bool Stack<DataType>::isFull() const
 {
     return (numNodes >= maxSize);
 }
 
 template <class DataType>
-DataType Stack::topStack() const
+DataType Stack<DataType>::topStack() const
 {
     return top->data;
+}
+
+template <class DataType>
+void Stack<DataType>::printStack()
+{
+    if(!isEmpty())
+        {
+        StackNode<DataType>* temp = top;
+        //cout << "num " << numNodes << endl;
+        while(temp != NULL)
+        {
+            cout << temp->data << ", ";
+            temp = temp->next;
+        }
+        cout << endl;
+    }else
+        cout << "Empty stack" << endl;
 }
