@@ -12,8 +12,11 @@ Student::Student()
     cout << endl << "ID number: ";
     cin >> idNumber;
 }
-
+//ostream &operator<<(ostream &os, Student const &student)
+//{
+//    return os << "ID# " << student.idNumber << " - " << student.firstName << ", " << student.lastName;
+//}
 void Student::printStudent()
 {
-    cout << "ID# " << idNumber << " - " << firstName << ", " << lastName;
+    cout << "ID# " << idNumber << " - " << firstName << ", " << lastName << endl;
 }

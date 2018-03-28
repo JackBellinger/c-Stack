@@ -18,7 +18,7 @@ int menu()
     return response;
 }
 template <class DataType>
-bool validateInput(int response, Stack<DataType>* stack, bool isSStack)
+bool validateInput(int response, Stack<DataType>* stack)
 /* returns a bool determining if the program should quit or not, 
  * true if the program should quit
 */
@@ -30,6 +30,7 @@ bool validateInput(int response, Stack<DataType>* stack, bool isSStack)
         {
             case 1:
             {
+				cout << "new data" << endl;
                 DataType* x = new DataType();
                 addObj(stack, x);
                 cout << string(100, '\n');
@@ -44,7 +45,7 @@ bool validateInput(int response, Stack<DataType>* stack, bool isSStack)
             case 3:
             {
                 cout << string(100, '\n');
-                //cout << "Top element is: " <<  x->topStack() << endl;
+               	stack->topStack();
                 break;
             }
             case 4:
@@ -62,16 +63,15 @@ bool validateInput(int response, Stack<DataType>* stack, bool isSStack)
 }
 void addObj(Stack<int>* stack, int* x)
 {
-    //int value = 0;
     cout << "What would you like to add? : ";
     cin >> *x;
-    stack->push(x);
+    stack->push(*x);
 }
 
-void addObj(Stack<Student>* stack, Student* x)
+void addObj(Stack<Student>*& stack, Student*& x)
 {
-    //Student* y = new Student();
-    stack->push(x);
+    cout << "adding" << endl;
+    stack->push(*x);
 }
 
 int main()
@@ -79,18 +79,18 @@ int main()
     Stack<int>* iStack = new Stack<int>();
     Stack<Student>* sStack = new Stack<Student>();
     
-    cout << "Choose a stack type" << endl << "0. Student" << endl << "1. Integer";// << end;
-    bool isSStack = 0;
-    cin >> isSStack;
+    cout << "Choose a stack type" << endl << "0. Student" << endl << "1. Integer" << endl;
+    bool isIStack = 0;
+    cin >> isIStack;
     
     cout << string(100, '\n');
     bool quit = false;
     while(!quit)//menu asks for which option, which returns the choice into validateInput, which returns if the program should quit
     {
-        if(isSStack)
-            quit = validateInput(menu(), sStack, isSStack);
+        if(isIStack)
+            quit = validateInput(menu(), iStack);
         else
-            quit = validateInput(menu(), iStack, isSStack);
+            quit = validateInput(menu(), sStack);
         //stack->printStack();
     }
     return 0;

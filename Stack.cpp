@@ -1,8 +1,16 @@
 #include "Stack.h"
+#include "Student.h"
 #include <iostream>
 
 using namespace std;
 
+template <class DataType>
+StackNode<DataType>::StackNode()
+{
+    cout << "node" << endl;
+	//this->data = NULL;
+	return;
+}
 template <class DataType>
 Stack<DataType>::Stack(int size)
 {
@@ -29,10 +37,11 @@ Stack<DataType>::~Stack()
 }
 
 template <class DataType>
-void Stack<DataType>::push( DataType* d)
+void Stack<DataType>::push(const DataType d)
 {
     if(!isFull())
     {
+	cout<<"Pushing" << endl;
         StackNode<DataType>* newNode= new StackNode<DataType>();
         newNode->data = d;
         newNode->next = top;
@@ -40,6 +49,7 @@ void Stack<DataType>::push( DataType* d)
         numNodes++;
     }else
         cout << "Stack is full" << endl;
+    cout<<"pushed" << endl;
 }
 
 template <class DataType>
@@ -69,9 +79,36 @@ bool Stack<DataType>::isFull() const
 template <class DataType>
 DataType Stack<DataType>::topStack() const
 {
+	if(top != NULL)
+	{
     return top->data;
+	}else
+		cout << "Empty stack" << endl;
+	return DataType();
 }
 
+template <>
+Student Stack<Student>::topStack() const
+{
+	if(top != NULL)
+	{
+    	top->data.printStudent();   
+    	return top->data;
+	}else
+		cout << "Empty stack" << endl;
+	return Student();
+}
+template<>
+int Stack<int>::topStack() const
+{
+	if(top != NULL)
+	{
+		cout << top->data << endl;    
+		return top->data;
+	}else
+		cout << "Empty stack" << endl;
+	return -1;
+}
 template <class DataType>
 void Stack<DataType>::printStack()
 {
@@ -81,10 +118,11 @@ void Stack<DataType>::printStack()
         //cout << "num " << numNodes << endl;
         while(temp != NULL)
         {
-            cout << temp->data << ", ";
+            //cout << temp->data << ", ";
             temp = temp->next;
         }
         cout << endl;
     }else
         cout << "Empty stack" << endl;
 }
+
