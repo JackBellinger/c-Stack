@@ -81,44 +81,25 @@ DataType Stack<DataType>::topStack() const
 {
 	if(top != NULL)
 	{
-    return top->data;
+		cout << top->data;
+    	return top->data;
 	}else
 		cout << "Empty stack" << endl;
 	return DataType();
 }
 
-template <>
-Student Stack<Student>::topStack() const
-{
-	if(top != NULL)
-	{
-    	top->data.printStudent();   
-    	return top->data;
-	}else
-		cout << "Empty stack" << endl;
-	return Student();
-}
-template<>
-int Stack<int>::topStack() const
-{
-	if(top != NULL)
-	{
-		cout << top->data << endl;    
-		return top->data;
-	}else
-		cout << "Empty stack" << endl;
-	return -1;
-}
 template <class DataType>
 void Stack<DataType>::printStack()
 {
     if(!isEmpty())
         {
         StackNode<DataType>* temp = top;
-        //cout << "num " << numNodes << endl;
+        cout << "number of nodes:  " << numNodes << endl;
         while(temp != NULL)
         {
-            //cout << temp->data << ", ";
+            cout << temp->data;
+			if(temp->next != NULL)
+				cout << ", ";
             temp = temp->next;
         }
         cout << endl;

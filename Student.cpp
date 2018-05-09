@@ -5,22 +5,31 @@ using namespace std;
 
 Student::Student()
 {
-    
+	
 }
+
 void Student::inputData()
 {
-	cout << "First name: ";
+    cout << "First name: ";
     cin >> firstName;
     cout << endl << "Last name: ";
     cin >> lastName;
     cout << endl << "ID number: ";
     cin >> idNumber;
 }
-//ostream &operator<<(ostream &os, Student const &student)
-//{
-//    return os << "ID# " << student.idNumber << " - " << student.firstName << ", " << student.lastName;
-//}
-void Student::printStudent()
+Student::Student(int id)
 {
-    cout << "ID# " << idNumber << " - " << firstName << ", " << lastName << endl;
+	idNumber = id;
 }
+ostream& operator << (ostream& os, Student const& student)
+{
+    os << "ID# " << student.idNumber << " - " << student.firstName << ", " << student.lastName;
+	return os;
+}
+
+bool Student::operator < (const Student compare){ return idNumber < compare.idNumber;}
+bool Student::operator > (const Student compare){ return idNumber > compare.idNumber;}
+bool Student::operator <= (const Student compare){return !(idNumber > compare.idNumber);}
+bool Student::operator >= (const Student compare){return !(idNumber < compare.idNumber);}
+bool Student::operator == (const Student compare){return idNumber == compare.idNumber;}
+bool Student::operator != (const Student compare){return !(idNumber == compare.idNumber);}
