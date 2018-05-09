@@ -71,6 +71,7 @@ void addObj(Stack<int>* stack, int* x)
 void addObj(Stack<Student>*& stack, Student*& x)
 {
     cout << "adding" << endl;
+	x->inputData();
     stack->push(*x);
 }
 

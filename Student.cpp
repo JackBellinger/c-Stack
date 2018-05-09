@@ -5,7 +5,11 @@ using namespace std;
 
 Student::Student()
 {
-    cout << "First name: ";
+    
+}
+void Student::inputData()
+{
+	cout << "First name: ";
     cin >> firstName;
     cout << endl << "Last name: ";
     cin >> lastName;

@@ -9,6 +9,7 @@ struct Student
     
     Student();
     void printStudent();
+	void inputData();
 };
 
 #endif
